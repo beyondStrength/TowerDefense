@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class Turret : PlacedObject
 {
+    public int health = 100;
+
     [SerializeField] float radius;
+    [SerializeField] int damage;
 
     public int bullets;
 
@@ -20,7 +23,12 @@ public class Turret : PlacedObject
 
     void ShootSelectedEnemy()
     {
-        // TODO: check if there is bullets and shoot the enemy
+        if(bullets > 0)
+        {
+            Enemy enemy = selectedEnemy.GetComponent<Enemy>();
+
+            enemy.health -= damage;
+        }
     }
 
     private void OnDrawGizmos()
