@@ -7,16 +7,18 @@ public class Enemy : MonoBehaviour
 {
     [Range(0, 100)] public int health = 100;
     NavMeshAgent nav = null!;
+    GameObject tower = null!;
     
 
     void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
+        tower = GameObject.Find("Tower");
     }
     private void Start() {
         nav.updateRotation = false;
         nav.updateUpAxis = false;
-        nav.SetDestination(new Vector3(7,4,0));
+        nav.SetDestination(tower.transform.position);
     }
 
     void Update()
